@@ -105,7 +105,7 @@ const getDailyTasksAndAppointments = async (token) => {
     };
 
     // Obtém agendamentos do dia
-    const appointmentsResponse = await axios.get(`${process.env.API_BASE_URL}/api/appointments`, {
+    const appointmentsResponse = await axios.get(`${process.env.API_BASE_URL}/api/appointments/calendario`, {
       ...config,
       params: { date: new Date().toISOString().split('T')[0] } // Data de hoje no formato 'YYYY-MM-DD'
     });
@@ -186,6 +186,7 @@ cron.schedule('0 5 * * *', () => {
   timezone: "America/Sao_Paulo"
 });
 
+//Fake
 // cron.schedule('* * * * *', () => {
 //   console.log('Aguardando 20 segundos para envio de email...');
 //   setTimeout(() => {
@@ -202,7 +203,7 @@ app.listen(PORT, () => {
 
 // Rota fake de GET para manter a conexão
   setInterval(() => {
-    axios.get(`https://lash-app-microservice.onrender.com/api/get`)
+    axios.get(`https://mailmicroservice.onrender.com/api/get`)
       .then(response => {
         console.log('GET realizado com sucesso');
       })

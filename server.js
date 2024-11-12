@@ -170,29 +170,24 @@ app.get('/api/get', async (req, res) => {
   }
 });
 
-// Agendamento para teste a cada 10 segundos
-// cron.schedule('*/50 * * * * *', () => {  // '*/10 * * * * *' significa "a cada 10 segundos"
-//   console.log('Executando tarefa agendada para enviar notificação de teste a cada 50 segundos...');
-//   sendDailyNotification();
-// }, {
-//   timezone: "America/Sao_Paulo" // Defina o fuso horário desejado
-// });
-
 // Agendamento Correto
 cron.schedule('0 5 * * *', () => {
-  console.log('Realizando procedimento de envio de email...');
-  sendDailyNotification();
+  console.log('Aguardando 5 segundos para envio de email...');
+  setTimeout(() => {
+    console.log('Realizando procedimento de envio de email...');
+    sendDailyNotification();
+  }, 5000); // 5 segundos em milissegundos
 }, {
   timezone: "America/Sao_Paulo"
 });
 
 //Fake
 // cron.schedule('* * * * *', () => {
-//   console.log('Aguardando 20 segundos para envio de email...');
+//   console.log('Aguardando 5 segundos para envio de email...');
 //   setTimeout(() => {
 //     console.log('Realizando procedimento de envio de email...');
 //     sendDailyNotification();
-//   }, 20000); // 20 segundos em milissegundos
+//   }, 5000); // 5 segundos em milissegundos
 // }, {
 //   timezone: "America/Sao_Paulo"
 // });
